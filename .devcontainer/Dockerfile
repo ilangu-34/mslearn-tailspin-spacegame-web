@@ -31,18 +31,9 @@ ARG AGENT_VERSION="2.206.1"
 
 RUN cd /home/vscode/azure-pipelines \
     && curl -O -L https://vstsagentpackage.azureedge.net/agent/${AGENT_VERSION}/vsts-agent-linux-${ARCH}-${AGENT_VERSION}.tar.gz \
-    && tar xzf /home/vscode/azure-pipelines/vsts-agent-linux-${ARCH}-${AGENT_VERSION}.tar.gz 
-   # && chmod +x /home/vscode/azure-pipelines/bin/installdependencies.sh \
+    && tar xzf /home/vscode/azure-pipelines/vsts-agent-linux-${ARCH}-${AGENT_VERSION}.tar.gz \
+    && chmod +x /home/vscode/azure-pipelines/bin/installdependencies.sh 
    # && /home/vscode/azure-pipelines/bin/installdependencies.sh
-
-RUN apt update 
-RUN apt install -y libkrb5-3 zlib1g debsums
-RUN apt install -y liblttng-ust1
-RUN apt install -y libssl3
-RUN apt install -y libicu70
-#liblttng-ust0
-#RUN apt install -y libssl3 libssl1.1 libssl1.0.2 libssl1.0.0
-#RUN apt install -y libicu70 libicu67 libicu66 libicu63 libicu60 libicu57 libicu55 libicu52
 
 
 # copy over the start.sh script
