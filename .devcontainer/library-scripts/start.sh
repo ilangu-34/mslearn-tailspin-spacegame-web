@@ -21,7 +21,7 @@ export VSO_AGENT_IGNORE=ADO_PAT,GH_TOKEN,GITHUB_CODESPACE_TOKEN,GITHUB_TOKEN
 --url "${ADO_URL}" \
 --auth PAT \
 --token "${ADO_PAT}" \
---pool "${ADO_POOL_NAME:-Default}" \
+--pool "${ADO_POOL_NAME}" \
 --replace \
 --acceptTeeEula
 
