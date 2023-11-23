@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/devcontainers/dotnet:7.0
+FROM mcr.microsoft.com/devcontainers/dotnet:6.0
 
 # Install NodeJS
 # [Choice] Node.js version: none, lts/*, 18, 16, 14
@@ -32,8 +32,14 @@ ARG AGENT_VERSION="2.206.1"
 RUN cd /home/vscode/azure-pipelines \
     && curl -O -L https://vstsagentpackage.azureedge.net/agent/${AGENT_VERSION}/vsts-agent-linux-${ARCH}-${AGENT_VERSION}.tar.gz \
     && tar xzf /home/vscode/azure-pipelines/vsts-agent-linux-${ARCH}-${AGENT_VERSION}.tar.gz 
-    && chmod +x /home/vscode/azure-pipelines/bin/installdependencies.sh \
-    && /home/vscode/azure-pipelines/bin/installdependencies.sh
+   # && chmod +x /home/vscode/azure-pipelines/bin/installdependencies.sh \
+   # && /home/vscode/azure-pipelines/bin/installdependencies.sh
+
+RUN apt update && apt install -y libkrb5-3 zlib1g debsums
+RUN apt install -y liblttng-ust1 || apt install -y liblttng-ust0
+RUN apt install -y libssl3 || apt install -y libssl1.1 || apt install -y libssl1.0.2 || apt install -y libssl1.0.0
+RUN apt install -y libicu70 || apt install -y libicu67 || apt install  -y libicu66 || apt install -y libicu63 || apt install -y libicu60  || apt install -y libicu57 || apt install -y libicu55 || apt install -y libicu52
+
 
 # copy over the start.sh script
 COPY library-scripts/start.sh /home/vscode/azure-pipelines/start.sh
