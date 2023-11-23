@@ -2,7 +2,7 @@ trigger:
 - main
 
 pool:
-  name: 'codespaces - pool'
+  name: 'codespaces-pool'
 
 variables:
   buildConfiguration: 'Release'
